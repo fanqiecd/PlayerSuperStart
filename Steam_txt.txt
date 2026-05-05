@@ -1,0 +1,101 @@
+﻿[img]https://i.loli.net/2019/03/22/5c94527d1e71d.gif[/img]
+
+[h1]自定义开局单位数量 / Custom Starting Unit Counts[/h1]
+
+[b]中文：[/b]
+本模组允许你在[b]高级设置[/b]中自定义开局额外获得的单位数量，并可选择作用对象。战斗和侦察类额外单位会根据所选开局时代自动升级为当前时代可用的最高级单位。
+默认配置：仅人类玩家、1 个开拓者、3 个近战单位、1 个侦察兵、1 个建造者。
+
+[b]English:[/b]
+This mod lets you customize bonus starting units in the [b]Advanced Setup[/b] menu and choose the recipient players. Combat and recon bonus units scale to the selected starting era and use the strongest available unit for that era.
+Default configuration: human players only, 1 Settler, 3 melee units, 1 Scout, and 1 Builder.
+
+[hr][/hr]
+
+[h1]主要功能 / Key Features[/h1]
+
+[list]
+[*][b]更多可配置单位 / More Configurable Units[/b]
+可分别设置开拓者、近战单位、侦察兵、建造者、远程单位、商人的额外数量，每项可选 0 到 10。
+Customize bonus Settlers, melee units, Scouts, Builders, ranged units, and Traders. Each unit type can be set from 0 to 10.
+
+[*][b]作用对象可选 / Selectable Recipients[/b]
+你可以选择只给人类玩家赠送额外单位，或让所有主要文明（人类和 AI）都获得额外单位。
+Choose whether bonus units apply only to human players or to all major civilizations, including AI players.
+
+[*][b]时代限制可选 / Era Limit Selectable[/b]
+你可以选择仅限远古时代开局生效，或任意开局时代（古典、中世纪、文艺复兴等）都生效。
+Choose whether the bonus units are granted only in the Ancient Era or in any starting era (Classical, Medieval, Renaissance, etc.).
+
+[*][b]单位随时代升级 / Era-Scaled Units[/b]
+近战、侦察、远程额外单位会按当前开局时代自动选择该类别可用的最高级单位。
+Melee, recon, and ranged bonus units automatically use the strongest available unit for the selected starting era.
+
+[*][b]特色单位兼容 / Unique Unit Compatibility[/b]
+如果文明或领袖拥有对应基础单位的特色替代单位，会优先赠送该替代单位。
+Civilizations or leaders with a matching unique replacement receive that replacement when applicable.
+
+[*][b]更稳定的开局触发 / More Reliable Start Trigger[/b]
+重构了脚本触发与防重复逻辑，降低漏发或重复赠送的概率。
+The script trigger and duplicate-prevention logic have been rebuilt to reduce missed or repeated grants.
+[/list]
+
+[hr][/hr]
+
+[h1]默认设置 / Default Settings[/h1]
+
+[list]
+[*]赠送对象 / Recipients: 仅人类玩家 / Human players only
+[*]时代限制 / Era Limit: 仅远古时代 / Ancient Era only
+[*]开拓者 / Settlers: 1
+[*]近战单位 / Melee units: 3
+[*]侦察兵 / Scouts: 1
+[*]建造者 / Builders: 1
+[*]远程单位 / Ranged units: 0
+[*]商人 / Traders: 0
+[/list]
+
+[hr][/hr]
+
+[h1]常见问题 / FAQ[/h1]
+
+[b]Q: 为什么我没看到这些选项？[/b]
+A: 创建游戏时请进入[b]高级设置[/b]，相关选项位于地图选项区域附近。
+[b]Q: Why don't I see the options?[/b]
+A: Open [b]Advanced Setup[/b] when creating a game. The options are located near the Map Options section.
+
+[b]Q: AI 会获得额外单位吗？[/b]
+A: 默认不会。你可以在高级设置中把赠送对象切换为“所有主要文明”，这样 AI 主要文明也会获得额外单位。
+[b]Q: Do AI players receive bonus units?[/b]
+A: Not by default. You can switch the recipient option to “All Major Civilizations” if you want AI major civilizations to receive bonus units too.
+
+[b]Q: 后期时代开局会获得什么单位？[/b]
+A: 近战、侦察、远程额外单位会自动升级为当前开局时代及之前可用的最高级单位；开拓者、建造者、商人保持原单位。
+[b]Q: What units are granted in later era starts?[/b]
+A: Melee, recon, and ranged bonus units scale to the strongest available unit for the selected starting era. Settlers, Builders, and Traders remain unchanged.
+
+[b]Q: 为什么古典/中世纪等后期时代开局没有获得额外单位？[/b]
+A: 默认时代限制为"仅远古时代"（Ancient Era only），你需要在高级设置中将时代限制改为"任意开局时代"（Any starting era），才能在后期时代开局也获得额外单位。
+[b]Q: Why don't I receive bonus units in Classical/Medieval or later era starts?[/b]
+A: The default era limit is "Ancient Era only". You need to switch the era limit option to "Any starting era" in Advanced Setup to receive bonus units in later era starts as well.
+
+[b]Q: 商人开局有用吗？[/b]
+A: 商人通常需要城市和贸易容量才更有用，因此默认数量为 0。喜欢快速展开贸易路线的玩家可以自行开启。
+[b]Q: Are starting Traders useful?[/b]
+A: Traders usually need a city and trade capacity to be useful, so the default is 0. Enable them if you want faster trade-route starts.
+
+[hr][/hr]
+
+[h1]兼容性 / Compatibility[/h1]
+
+本模组主要修改高级设置参数与开局 Lua 赠送逻辑，通常可以与大多数不重写相同开局逻辑的 Mod 共存。如果其他 Mod 也大量修改开局单位、起始时代或玩家初始化流程，可能需要调整加载顺序或配置。
+This mod mainly adds Advanced Setup parameters and Lua-based starting-unit grants. It should work with most mods that do not heavily rewrite the same starting logic. If another mod also changes starting units, start eras, or player initialization, you may need to adjust load order or settings.
+
+[hr][/hr]
+
+[h1]最后说明 / Final Notes[/h1]
+
+如果你在使用中遇到问题，或希望增加更多可配置单位，欢迎在评论区留言。
+If you encounter issues or want more configurable unit types, feel free to leave a comment.
+
+[i]Created by Noot[/i]

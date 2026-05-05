@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GameData>
+    <LocalizedText>
+        <Row Tag="LOC_RUIVO_MOD_NAME" Language="zh_Hans_CN">
+            <Text>自定义开局单位数量</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_MOD_NAME" Language="en_US">
+            <Text>Custom Starting Unit Counts</Text>
+        </Row>
+
+        <Row Tag="LOC_RUIVO_MOD_TEASER" Language="zh_Hans_CN">
+            <Text>在高级设置中自定义开局额外单位。</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_MOD_TEASER" Language="en_US">
+            <Text>Customize bonus starting units in Advanced Setup.</Text>
+        </Row>
+
+        <Row Tag="LOC_RUIVO_MOD_DESCRIPTION" Language="zh_Hans_CN">
+            <Text>允许自定义开局额外赠送的开拓者、近战单位、侦察兵、建造者、远程单位和商人数量，并可选择仅人类玩家或所有主要文明生效，以及仅远古时代或任意开局时代生效。战斗和侦察类额外单位会随所选开局时代自动升级。默认：仅人类玩家、仅远古时代、1 开拓者、3 近战单位、1 侦察兵、1 建造者。</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_MOD_DESCRIPTION" Language="en_US">
+            <Text>Customize bonus Settlers, melee units, Scouts, Builders, ranged units, and Traders at game start. You can choose whether the bonus applies only to human players or all major civilizations, and whether it applies only in the Ancient Era or any starting era. Combat and recon bonus units scale to the selected starting era. Default: human players only, Ancient Era only, 1 Settler, 3 melee units, 1 Scout, and 1 Builder.</Text>
+        </Row>
+
+        <Row Tag="LOC_RUIVO_TARGET_PLAYERS_NAME" Language="zh_Hans_CN">
+            <Text>赠送对象</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_TARGET_PLAYERS_NAME" Language="en_US">
+            <Text>Bonus Recipients</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_TARGET_PLAYERS_DESC" Language="zh_Hans_CN">
+            <Text>选择哪些主要文明会获得开局额外单位。</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_TARGET_PLAYERS_DESC" Language="en_US">
+            <Text>Choose which major civilizations receive bonus starting units.</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_TARGET_HUMAN_ONLY_NAME" Language="zh_Hans_CN">
+            <Text>仅人类玩家</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_TARGET_HUMAN_ONLY_NAME" Language="en_US">
+            <Text>Human Players Only</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_TARGET_HUMAN_ONLY_DESC" Language="zh_Hans_CN">
+            <Text>只有人类主要文明获得额外单位。</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_TARGET_HUMAN_ONLY_DESC" Language="en_US">
+            <Text>Only human major civilizations receive bonus units.</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_TARGET_ALL_MAJOR_NAME" Language="zh_Hans_CN">
+            <Text>所有主要文明</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_TARGET_ALL_MAJOR_NAME" Language="en_US">
+            <Text>All Major Civilizations</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_TARGET_ALL_MAJOR_DESC" Language="zh_Hans_CN">
+            <Text>人类和 AI 主要文明都会获得额外单位。</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_TARGET_ALL_MAJOR_DESC" Language="en_US">
+            <Text>Human and AI major civilizations receive bonus units.</Text>
+        </Row>
+
+        <Row Tag="LOC_RUIVO_ERA_LIMIT_NAME" Language="zh_Hans_CN">
+            <Text>时代限制</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_ERA_LIMIT_NAME" Language="en_US">
+            <Text>Era Limit</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_ERA_LIMIT_DESC" Language="zh_Hans_CN">
+            <Text>选择额外单位是否只在远古时代开局时赠送。</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_ERA_LIMIT_DESC" Language="en_US">
+            <Text>Choose whether bonus units are granted only when starting in the Ancient Era.</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_ERA_ANCIENT_ONLY_NAME" Language="zh_Hans_CN">
+            <Text>仅远古时代</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_ERA_ANCIENT_ONLY_NAME" Language="en_US">
+            <Text>Ancient Era Only</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_ERA_ANCIENT_ONLY_DESC" Language="zh_Hans_CN">
+            <Text>只有选择远古时代开局时才赠送额外单位。</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_ERA_ANCIENT_ONLY_DESC" Language="en_US">
+            <Text>Bonus units are granted only when the game starts in the Ancient Era.</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_ERA_ANY_ERA_NAME" Language="zh_Hans_CN">
+            <Text>任意开局时代</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_ERA_ANY_ERA_NAME" Language="en_US">
+            <Text>Any Starting Era</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_ERA_ANY_ERA_DESC" Language="zh_Hans_CN">
+            <Text>无论选择哪个开局时代都会赠送额外单位。</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_ERA_ANY_ERA_DESC" Language="en_US">
+            <Text>Bonus units are granted regardless of the selected starting era.</Text>
+        </Row>
+
+        <Row Tag="LOC_RUIVO_SETTLER_COUNT_NAME" Language="zh_Hans_CN">
+            <Text>开拓者数量</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_SETTLER_COUNT_NAME" Language="en_US">
+            <Text>Settlers</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_SETTLER_COUNT_DESC" Language="zh_Hans_CN">
+            <Text>设定开局额外赠送的开拓者数量。</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_SETTLER_COUNT_DESC" Language="en_US">
+            <Text>Set the number of bonus Settlers granted at game start.</Text>
+        </Row>
+
+        <Row Tag="LOC_RUIVO_WARRIOR_COUNT_NAME" Language="zh_Hans_CN">
+            <Text>近战单位数量</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_WARRIOR_COUNT_NAME" Language="en_US">
+            <Text>Melee Units</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_WARRIOR_COUNT_DESC" Language="zh_Hans_CN">
+            <Text>设定开局额外赠送的近战单位数量。单位会随所选开局时代自动升级为可用的最高级近战单位。</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_WARRIOR_COUNT_DESC" Language="en_US">
+            <Text>Set the number of bonus melee units granted at game start. Units scale to the strongest available melee unit for the selected starting era.</Text>
+        </Row>
+
+        <Row Tag="LOC_RUIVO_SCOUT_COUNT_NAME" Language="zh_Hans_CN">
+            <Text>侦察兵数量</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_SCOUT_COUNT_NAME" Language="en_US">
+            <Text>Scouts</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_SCOUT_COUNT_DESC" Language="zh_Hans_CN">
+            <Text>设定开局额外赠送的侦察类单位数量。单位会随所选开局时代自动升级。</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_SCOUT_COUNT_DESC" Language="en_US">
+            <Text>Set the number of bonus recon units granted at game start. Units scale to the selected starting era.</Text>
+        </Row>
+
+        <Row Tag="LOC_RUIVO_BUILDER_COUNT_NAME" Language="zh_Hans_CN">
+            <Text>建造者数量</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_BUILDER_COUNT_NAME" Language="en_US">
+            <Text>Builders</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_BUILDER_COUNT_DESC" Language="zh_Hans_CN">
+            <Text>设定开局额外赠送的建造者数量。</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_BUILDER_COUNT_DESC" Language="en_US">
+            <Text>Set the number of bonus Builders granted at game start.</Text>
+        </Row>
+
+        <Row Tag="LOC_RUIVO_SLINGER_COUNT_NAME" Language="zh_Hans_CN">
+            <Text>远程单位数量</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_SLINGER_COUNT_NAME" Language="en_US">
+            <Text>Ranged Units</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_SLINGER_COUNT_DESC" Language="zh_Hans_CN">
+            <Text>设定开局额外赠送的远程单位数量。单位会随所选开局时代自动升级为可用的最高级远程单位。</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_SLINGER_COUNT_DESC" Language="en_US">
+            <Text>Set the number of bonus ranged units granted at game start. Units scale to the strongest available ranged unit for the selected starting era.</Text>
+        </Row>
+
+        <Row Tag="LOC_RUIVO_TRADER_COUNT_NAME" Language="zh_Hans_CN">
+            <Text>商人数量</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_TRADER_COUNT_NAME" Language="en_US">
+            <Text>Traders</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_TRADER_COUNT_DESC" Language="zh_Hans_CN">
+            <Text>设定开局额外赠送的商人数量。商人通常需要已有城市和贸易容量才更有用。</Text>
+        </Row>
+        <Row Tag="LOC_RUIVO_TRADER_COUNT_DESC" Language="en_US">
+            <Text>Set the number of bonus Traders granted at game start. Traders are usually most useful after you have a city and trade capacity.</Text>
+        </Row>
+    </LocalizedText>
+</GameData>

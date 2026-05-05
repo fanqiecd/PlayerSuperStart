@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mod id="a1b2c3d4-e5f6-7890-1234-56789abcdef0" version="2">
+  <Properties>
+    <Name>LOC_RUIVO_MOD_NAME</Name>
+    <Teaser>LOC_RUIVO_MOD_TEASER</Teaser>
+    <Description>LOC_RUIVO_MOD_DESCRIPTION</Description>
+    <Authors>Noot</Authors>
+    <CompatibleVersions>1.2,2.0</CompatibleVersions>
+  </Properties>
+
+  <FrontEndActions>
+    <UpdateText id="SuperStart_Text_Front">
+      <Properties>
+        <LoadOrder>1</LoadOrder>
+      </Properties>
+      <File>Text.xml</File>
+    </UpdateText>
+    <UpdateDatabase id="SuperStart_Config">
+      <Properties>
+        <LoadOrder>999999</LoadOrder>
+      </Properties>
+      <File>Config.sql</File>
+    </UpdateDatabase>
+  </FrontEndActions>
+
+  <InGameActions>
+    <AddGameplayScripts id="SuperStart_Script">
+      <File>SuperStartScript.lua</File>
+    </AddGameplayScripts>
+    <UpdateText id="SuperStart_Text_InGame">
+      <Properties>
+        <LoadOrder>1</LoadOrder>
+      </Properties>
+      <File>Text.xml</File>
+    </UpdateText>
+  </InGameActions>
+
+  <Files>
+    <File>SuperStartScript.lua</File>
+    <File>Config.sql</File>
+    <File>Text.xml</File>
+  </Files>
+</Mod>
