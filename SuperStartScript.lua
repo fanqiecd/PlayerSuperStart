@@ -258,6 +258,84 @@ local function RUIVO_UnitHasPrereq(unitRow)
         or (unitRow.PrereqCivic ~= nil and unitRow.PrereqCivic ~= "")
 end
 
+local function RUIVO_PlayerHasTech(playerID, techType)
+    if techType == nil or techType == "" then
+        return true
+    end
+
+    local player = Players[playerID]
+    local techRow = GameInfo.Technologies[techType]
+    if player == nil or techRow == nil or techRow.Index == nil or player.GetTechs == nil then
+        return false
+    end
+
+    local playerTechs = player:GetTechs()
+    if playerTechs == nil or playerTechs.HasTech == nil then
+        return false
+    end
+
+    local ok, hasTech = pcall(function()
+        return playerTechs:HasTech(techRow.Index)
+    end)
+
+    return ok and hasTech == true
+end
+
+local function RUIVO_PlayerHasCivic(playerID, civicType)
+    if civicType == nil or civicType == "" then
+        return true
+    end
+
+    local player = Players[playerID]
+    local civicRow = GameInfo.Civics[civicType]
+    if player == nil or civicRow == nil or civicRow.Index == nil or player.GetCulture == nil then
+        return false
+    end
+
+    local playerCulture = player:GetCulture()
+    if playerCulture == nil or playerCulture.HasCivic == nil then
+        return false
+    end
+
+    local ok, hasCivic = pcall(function()
+        return playerCulture:HasCivic(civicRow.Index)
+    end)
+
+    return ok and hasCivic == true
+end
+
+local function RUIVO_IsUnitUnlockedForPlayer(playerID, unitRow)
+    if unitRow == nil then
+        return false
+    end
+
+    return RUIVO_PlayerHasTech(playerID, unitRow.PrereqTech)
+        and RUIVO_PlayerHasCivic(playerID, unitRow.PrereqCivic)
+end
+
+local function RUIVO_IsUnitAvailableForStart(playerID, unitRow, availableEraIndex)
+    if unitRow == nil then
+        return false
+    end
+
+    local startEraIndex = RUIVO_GetStartEraIndex()
+    local eraIndex = RUIVO_GetUnitEraIndex(unitRow)
+    if eraIndex > availableEraIndex then
+        return false
+    end
+
+    -- Ancient start should only grant units with no tech/civic prerequisite.
+    if startEraIndex <= 0 and RUIVO_UnitHasPrereq(unitRow) then
+        return false
+    end
+
+    if startEraIndex > 0 and not RUIVO_IsUnitUnlockedForPlayer(playerID, unitRow) then
+        return false
+    end
+
+    return true
+end
+
 local function RUIVO_IsHeroUnit(unitRow)
     if unitRow == nil or unitRow.UnitType == nil then
         return false
@@ -293,7 +371,7 @@ local function RUIVO_IsBaseStartUnitCandidate(unitRow, promotionClass)
         and not RUIVO_IsHeroUnit(unitRow)
 end
 
-local function RUIVO_GetBestBaseUnitByPromotionClass(promotionClass, fallbackUnitType)
+local function RUIVO_GetBestBaseUnitByPromotionClass(playerID, promotionClass, fallbackUnitType)
     local availableEraIndex = RUIVO_GetAvailableUnitEraIndex()
     local bestUnitType = fallbackUnitType
     local bestEraIndex = -1
@@ -307,17 +385,17 @@ local function RUIVO_GetBestBaseUnitByPromotionClass(promotionClass, fallbackUni
             local power, cost = RUIVO_GetUnitPower(unitRow)
             local hasPrereq = RUIVO_UnitHasPrereq(unitRow)
 
-            if eraIndex <= availableEraIndex then
+            if RUIVO_IsUnitAvailableForStart(playerID, unitRow, availableEraIndex) then
                 local better = false
                 if eraIndex > bestEraIndex then
                     better = true
                 elseif eraIndex == bestEraIndex then
-                    if not hasPrereq and bestHasPrereq then
+                    if power > bestPower then
                         better = true
-                    elseif hasPrereq == bestHasPrereq then
-                        if power > bestPower then
+                    elseif power == bestPower then
+                        if cost > bestCost then
                             better = true
-                        elseif power == bestPower and cost > bestCost then
+                        elseif cost == bestCost and not hasPrereq and bestHasPrereq then
                             better = true
                         end
                     end
@@ -346,8 +424,7 @@ local function RUIVO_FindUnitReplacement(playerID, baseUnitType)
             for replaceRow in GameInfo.UnitReplaces() do
                 local replacementUnitType = replaceRow.CivUniqueUnitType or replaceRow.UnitType
                 if replacementUnitType == unitRow.UnitType and replaceRow.ReplacesUnitType == baseUnitType then
-                    local replacementEraIndex = RUIVO_GetUnitEraIndex(unitRow)
-                    if replacementEraIndex <= availableEraIndex then
+                    if RUIVO_IsUnitAvailableForStart(playerID, unitRow, availableEraIndex) then
                         return unitRow.UnitType
                     end
                 end
@@ -363,7 +440,7 @@ local function RUIVO_FindUnitForStartEra(playerID, fallbackUnitType, promotionCl
         return fallbackUnitType
     end
 
-    local baseUnitType = RUIVO_GetBestBaseUnitByPromotionClass(promotionClass, fallbackUnitType)
+    local baseUnitType = RUIVO_GetBestBaseUnitByPromotionClass(playerID, promotionClass, fallbackUnitType)
     return RUIVO_FindUnitReplacement(playerID, baseUnitType)
 end
 
@@ -410,7 +487,11 @@ local function RUIVO_GrantStartUnits(playerID, x, y)
     local scoutType = RUIVO_FindUnitForStartEra(playerID, "UNIT_SCOUT", "PROMOTION_CLASS_RECON")
     local slingerType = RUIVO_FindUnitForStartEra(playerID, "UNIT_SLINGER", "PROMOTION_CLASS_RANGED")
 
-    RUIVO_Log("Start era index " .. tostring(RUIVO_GetStartEraIndex()) .. ", available unit era index " .. tostring(RUIVO_GetAvailableUnitEraIndex()) .. ", melee " .. warriorType .. ", recon " .. scoutType .. ", ranged " .. slingerType .. ".")
+    RUIVO_Log("Start era index " ..
+        tostring(RUIVO_GetStartEraIndex()) ..
+        ", available unit era index " ..
+        tostring(RUIVO_GetAvailableUnitEraIndex()) ..
+        ", melee " .. warriorType .. ", recon " .. scoutType .. ", ranged " .. slingerType .. ".")
 
     RUIVO_GrantUnits(playerID, "UNIT_SETTLER", RUIVO_GetCount("RUIVO_SETTLER_COUNT"), x, y)
     RUIVO_GrantUnits(playerID, warriorType, RUIVO_GetCount("RUIVO_WARRIOR_COUNT"), x, y)
