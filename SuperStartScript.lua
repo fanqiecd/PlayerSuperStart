@@ -258,6 +258,41 @@ local function RUIVO_UnitHasPrereq(unitRow)
         or (unitRow.PrereqCivic ~= nil and unitRow.PrereqCivic ~= "")
 end
 
+local function RUIVO_IsHeroUnit(unitRow)
+    if unitRow == nil or unitRow.UnitType == nil then
+        return false
+    end
+
+    if string.sub(unitRow.UnitType, 1, 10) == "UNIT_HERO_" then
+        return true
+    end
+
+    if GameInfo.HeroClasses ~= nil then
+        for heroRow in GameInfo.HeroClasses() do
+            if heroRow.UnitType == unitRow.UnitType then
+                return true
+            end
+        end
+    end
+
+    if GameInfo.TypeProperties ~= nil then
+        for propertyRow in GameInfo.TypeProperties() do
+            if propertyRow.Type == unitRow.UnitType and propertyRow.Name == "LIFESPAN" then
+                return true
+            end
+        end
+    end
+
+    return false
+end
+
+local function RUIVO_IsBaseStartUnitCandidate(unitRow, promotionClass)
+    return unitRow.PromotionClass == promotionClass
+        and (unitRow.TraitType == nil or unitRow.TraitType == "")
+        and (tonumber(unitRow.Cost) or 0) > 0
+        and not RUIVO_IsHeroUnit(unitRow)
+end
+
 local function RUIVO_GetBestBaseUnitByPromotionClass(promotionClass, fallbackUnitType)
     local availableEraIndex = RUIVO_GetAvailableUnitEraIndex()
     local bestUnitType = fallbackUnitType
@@ -267,7 +302,7 @@ local function RUIVO_GetBestBaseUnitByPromotionClass(promotionClass, fallbackUni
     local bestHasPrereq = true
 
     for unitRow in GameInfo.Units() do
-        if unitRow.PromotionClass == promotionClass and (unitRow.TraitType == nil or unitRow.TraitType == "") then
+        if RUIVO_IsBaseStartUnitCandidate(unitRow, promotionClass) then
             local eraIndex = RUIVO_GetUnitEraIndex(unitRow)
             local power, cost = RUIVO_GetUnitPower(unitRow)
             local hasPrereq = RUIVO_UnitHasPrereq(unitRow)
@@ -307,7 +342,7 @@ local function RUIVO_FindUnitReplacement(playerID, baseUnitType)
     local availableEraIndex = RUIVO_GetAvailableUnitEraIndex()
 
     for unitRow in GameInfo.Units() do
-        if traitTypes[unitRow.TraitType] then
+        if traitTypes[unitRow.TraitType] and (tonumber(unitRow.Cost) or 0) > 0 and not RUIVO_IsHeroUnit(unitRow) then
             for replaceRow in GameInfo.UnitReplaces() do
                 local replacementUnitType = replaceRow.CivUniqueUnitType or replaceRow.UnitType
                 if replacementUnitType == unitRow.UnitType and replaceRow.ReplacesUnitType == baseUnitType then
